@@ -1,0 +1,159 @@
+/*
+ * MGC GROUP — дизайн-токены.
+ *
+ * Единственный источник правды по цветам, радиусам и шрифтам.
+ * Файл не зависит от фреймворка: его можно подключить в React, Next.js,
+ * Vue 2/3 или в обычный HTML. Tailwind-утилиты строятся поверх этих
+ * переменных в src/index.css (@theme inline).
+ *
+ * Спецификация: docs/02-tokens.md
+ */
+
+:root {
+  /* ── Бренд-палитра (брендбук, стр. 6–7). Не используйте напрямую в компонентах —
+        только через семантические токены ниже. ─────────────────────────────── */
+  --mgc-red: oklch(0.592 0.243 29.2); /* #ec0000 — Красный */
+  --mgc-black: oklch(0.2 0 0); /* #161616 — Чёрный */
+  --mgc-white: oklch(1 0 0); /* #ffffff — Белый */
+  --mgc-gray-900: oklch(0.297 0 0); /* #2d2d2d */
+  --mgc-gray-700: oklch(0.471 0 0); /* #5b5b5b */
+  --mgc-gray-500: oklch(0.633 0 0); /* #8a8a8a */
+  --mgc-gray-300: oklch(0.786 0 0); /* #b9b9b9 */
+  --mgc-gray-100: oklch(0.931 0 0); /* #e8e8e8 */
+
+  /* Дополнительная палитра (брендбук, стр. 7) — для графиков и статусов. */
+  --mgc-steel: oklch(0.569 0.086 261.9); /* #5b77aa */
+  --mgc-ochre: oklch(0.642 0.093 66.4); /* #b3814c */
+  --mgc-sage: oklch(0.751 0.071 136.1); /* #9ab98c */
+  --mgc-rose: oklch(0.667 0.075 20.3); /* #be8281 */
+  --mgc-slate: oklch(0.614 0.034 234.8); /* #718896 */
+  --mgc-sand: oklch(0.832 0.073 91.8); /* #d9c791 */
+  --mgc-olive: oklch(0.645 0.072 107.3); /* #92915d */
+  --mgc-brick: oklch(0.465 0.14 31.9); /* #983221 */
+
+  /* ── Типографика ───────────────────────────────────────────────────────── */
+  --font-sans-family: "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ── Форма ─────────────────────────────────────────────────────────────── */
+  --radius: 0.75rem; /* 12px — базовый радиус; карточки = radius-xl (~17px) */
+
+  /* ── Семантика: светлая тема ───────────────────────────────────────────── */
+  --background: oklch(0.97 0 0); /* фон приложения, #f5f5f4 */
+  --foreground: var(--mgc-black);
+  --card: var(--mgc-white);
+  --card-foreground: var(--mgc-black);
+  --popover: var(--mgc-white);
+  --popover-foreground: var(--mgc-black);
+
+  --primary: var(--mgc-black); /* основное действие — графит, не красный */
+  --primary-foreground: var(--mgc-white);
+  --secondary: oklch(0.949 0 0);
+  --secondary-foreground: var(--mgc-black);
+  --muted: oklch(0.949 0 0);
+  --muted-foreground: var(--mgc-gray-700); /* 6.8:1 на белом */
+  --accent: oklch(0.949 0 0);
+  --accent-foreground: var(--mgc-black);
+
+  --brand: var(--mgc-red); /* логотип, активная навигация, бренд-акценты */
+  --brand-foreground: var(--mgc-white); /* 4.6:1 */
+  --brand-soft: oklch(0.95 0.03 25); /* подложка аватара, бренд-бейджей */
+
+  --destructive: oklch(0.546 0.224 29.2); /* #d40000 — ошибки, остановка, удаление */
+  --destructive-foreground: var(--mgc-white);
+  --success: oklch(0.5 0.1 140);
+  --success-foreground: var(--mgc-white);
+  --success-soft: oklch(0.95 0.035 136);
+  --warning: oklch(0.52 0.105 66);
+  --warning-foreground: var(--mgc-white);
+  --warning-soft: oklch(0.95 0.045 85);
+  --info: oklch(0.5 0.1 262);
+  --info-foreground: var(--mgc-white);
+  --info-soft: oklch(0.95 0.025 262);
+  --destructive-soft: oklch(0.95 0.035 25);
+
+  --border: var(--mgc-gray-100);
+  --input: oklch(0.89 0 0);
+  --ring: var(--mgc-gray-500);
+
+  /* Графики: тона дополнительной палитры, насыщенность поднята до порога различимости.
+     Проверено dataviz/validate_palette (CVD, контраст, светлота) — см. docs/02-tokens.md */
+  --chart-1: oklch(0.480 0.121 261.9); /* #365ba1 сталь */
+  --chart-2: oklch(0.561 0.120 18.4); /* #b05459 роза */
+  --chart-3: oklch(0.639 0.120 100.1); /* #9d8d26 олива */
+  --chart-4: oklch(0.644 0.114 215.6); /* #009eb9 сланец */
+  --chart-5: oklch(0.600 0.120 62.4); /* #b26e27 охра */
+
+  /* Последовательная шкала (тепловые карты): один тон — сталь, светлое → тёмное */
+  --seq-1: oklch(0.95 0.02 262);
+  --seq-2: oklch(0.85 0.05 262);
+  --seq-3: oklch(0.72 0.09 262);
+  --seq-4: oklch(0.58 0.11 262);
+  --seq-5: oklch(0.44 0.11 262);
+
+  --sidebar: var(--mgc-white);
+  --sidebar-foreground: var(--mgc-black);
+  --sidebar-accent: oklch(0.955 0 0);
+  --sidebar-accent-foreground: var(--mgc-black);
+  --sidebar-border: var(--mgc-gray-100);
+  --sidebar-ring: var(--mgc-gray-500);
+}
+
+/* ── Семантика: тёмная тема ──────────────────────────────────────────────── */
+.dark {
+  --background: oklch(0.165 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.215 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.245 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+
+  --primary: oklch(0.97 0 0);
+  --primary-foreground: var(--mgc-black);
+  --secondary: oklch(0.28 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.28 0 0);
+  --muted-foreground: oklch(0.74 0 0);
+  --accent: oklch(0.28 0 0);
+  --accent-foreground: oklch(0.97 0 0);
+
+  --brand: oklch(0.655 0.231 26.4); /* #ff3b3b — светлее для тёмного фона */
+  --brand-foreground: var(--mgc-white);
+  --brand-soft: oklch(0.3 0.08 25);
+
+  --destructive: oklch(0.68 0.2 25);
+  --destructive-foreground: var(--mgc-black);
+  --success: oklch(0.76 0.11 140);
+  --success-foreground: var(--mgc-black);
+  --success-soft: oklch(0.3 0.05 140);
+  --warning: oklch(0.8 0.11 80);
+  --warning-foreground: var(--mgc-black);
+  --warning-soft: oklch(0.31 0.05 75);
+  --info: oklch(0.74 0.1 262);
+  --info-foreground: var(--mgc-black);
+  --info-soft: oklch(0.29 0.05 262);
+  --destructive-soft: oklch(0.27 0.07 25);
+
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.6 0 0);
+
+  --chart-1: oklch(0.581 0.120 261.8); /* #5279c1 сталь */
+  --chart-2: oklch(0.580 0.119 18.1); /* #b65a5f роза */
+  --chart-3: oklch(0.612 0.127 99.1); /* #978400 олива */
+  --chart-4: oklch(0.623 0.114 220.7); /* #0096b7 сланец */
+  --chart-5: oklch(0.580 0.136 59.9); /* #b36300 охра */
+
+  --seq-1: oklch(0.27 0.03 262);
+  --seq-2: oklch(0.36 0.06 262);
+  --seq-3: oklch(0.48 0.09 262);
+  --seq-4: oklch(0.6 0.11 262);
+  --seq-5: oklch(0.74 0.1 262);
+
+  --sidebar: oklch(0.19 0 0);
+  --sidebar-foreground: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.26 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.6 0 0);
+}

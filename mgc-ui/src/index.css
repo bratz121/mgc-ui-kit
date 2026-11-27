@@ -1,0 +1,188 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/ibm-plex-sans";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "./styles/tokens.css";
+@import "./styles/modules.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Связка токенов (src/styles/tokens.css) с утилитами Tailwind. */
+@theme inline {
+  --font-sans: var(--font-sans-family);
+  --font-heading: var(--font-sans-family);
+  --font-mono: var(--font-mono-family);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-soft: var(--brand-soft);
+  --color-module-mark: var(--module-mark);
+  --color-module-strong: var(--module-strong);
+  --color-module-soft: var(--module-soft);
+  --color-module-solid: var(--module-solid);
+  --color-module-solid-foreground: var(--module-solid-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-soft: var(--info-soft);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-seq-1: var(--seq-1);
+  --color-seq-2: var(--seq-2);
+  --color-seq-3: var(--seq-3);
+  --color-seq-4: var(--seq-4);
+  --color-seq-5: var(--seq-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans antialiased;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading tracking-tight text-balance;
+  }
+}
+
+/* ── Поверхности браузера: выделение, каретка, скроллбары — из палитры ── */
+@layer base {
+  ::selection {
+    background: color-mix(in oklch, var(--brand) 22%, transparent);
+    color: var(--foreground);
+  }
+  input,
+  textarea,
+  [contenteditable] {
+    caret-color: var(--brand);
+  }
+  html {
+    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
+  }
+  * {
+    scrollbar-width: thin;
+  }
+  /* Прокручиваемый контейнер — точка отсчёта для absolute-потомков (sr-only подписи кнопок-иконок).
+     Иначе они «выпадают» из прокрутки и растягивают страницу по горизонтали. */
+  [class*="overflow-x-auto"],
+  [class*="overflow-auto"],
+  [class*="overflow-y-auto"] {
+    position: relative;
+  }
+  /* Цифры в таблицах и KPI — одинаковой ширины по умолчанию */
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ── Сенсорные экраны (терминалы в цехе, планшеты, телефоны) ──
+   Размер цели касания ≥ 44px. Определяем по типу указателя, а не по ширине экрана:
+   ноутбук с тачскрином и планшет с мышью ведут себя правильно. */
+@media (pointer: coarse) {
+  /* Только самостоятельные контролы. Вложенные (кнопка внутри поля, крестик в чипе,
+     кнопки в группе, вкладки в списке вкладок) не трогаем — иначе они вылезают
+     из контейнера фиксированной высоты и вёрстка «плывёт». */
+  [data-slot="button"]:not(
+      [data-slot="input-group"] *,
+      [data-slot="badge"] *,
+      [data-slot="tag-input"] *,
+      [data-slot="combobox-chips"] *,
+      [data-slot="button-group"] *,
+      [data-slot="calendar"] *,
+      [data-slot="card-action"] *
+    ),
+  [data-slot="select-trigger"],
+  [data-slot="native-select"],
+  [data-slot="input"],
+  [data-slot="input-group"],
+  [data-slot="combobox-chips"],
+  [data-slot="tag-input"],
+  [data-slot="pagination-link"] {
+    min-height: 2.75rem;
+  }
+  [data-slot="button"]:not(
+      [data-slot="input-group"] *,
+      [data-slot="badge"] *,
+      [data-slot="tag-input"] *,
+      [data-slot="combobox-chips"] *,
+      [data-slot="calendar"] *,
+      [data-slot="card-action"] *
+    ),
+  [data-slot="pagination-link"] {
+    min-width: 2.75rem;
+  }
+  /* Вкладки и сегменты: контейнер растёт вместе с элементами */
+  [data-slot="tabs-list"] {
+    height: auto !important;
+  }
+  [data-slot="tabs-trigger"],
+  [data-slot="toggle-group-item"] {
+    min-height: 2.5rem;
+  }
+  [data-slot="dropdown-menu-item"],
+  [data-slot="select-item"],
+  [data-slot="combobox-item"],
+  [data-slot="command-item"],
+  [data-slot="context-menu-item"] {
+    min-height: 2.75rem;
+  }
+  /* Поле 16px — iOS не зумит страницу при фокусе */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+}
