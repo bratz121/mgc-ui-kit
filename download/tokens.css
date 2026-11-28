@@ -1,0 +1,415 @@
+/* @mgc/ui 0.5.0 — дизайн-токены (CSS-переменные, без Tailwind). Сгенерировано scripts/build-package.mjs. */
+/*
+ * MGC GROUP — дизайн-токены.
+ *
+ * Единственный источник правды по цветам, радиусам и шрифтам.
+ * Файл не зависит от фреймворка: его можно подключить в React, Next.js,
+ * Vue 2/3 или в обычный HTML. Tailwind-утилиты строятся поверх этих
+ * переменных в src/index.css (@theme inline).
+ *
+ * Спецификация: docs/02-tokens.md
+ */
+
+:root {
+  /* ── Бренд-палитра (брендбук, стр. 6–7). Не используйте напрямую в компонентах —
+        только через семантические токены ниже. ─────────────────────────────── */
+  --mgc-red: oklch(0.592 0.243 29.2); /* #ec0000 — Красный */
+  --mgc-black: oklch(0.2 0 0); /* #161616 — Чёрный */
+  --mgc-white: oklch(1 0 0); /* #ffffff — Белый */
+  --mgc-gray-900: oklch(0.297 0 0); /* #2d2d2d */
+  --mgc-gray-700: oklch(0.471 0 0); /* #5b5b5b */
+  --mgc-gray-500: oklch(0.633 0 0); /* #8a8a8a */
+  --mgc-gray-300: oklch(0.786 0 0); /* #b9b9b9 */
+  --mgc-gray-100: oklch(0.931 0 0); /* #e8e8e8 */
+
+  /* Дополнительная палитра (брендбук, стр. 7) — для графиков и статусов. */
+  --mgc-steel: oklch(0.569 0.086 261.9); /* #5b77aa */
+  --mgc-ochre: oklch(0.642 0.093 66.4); /* #b3814c */
+  --mgc-sage: oklch(0.751 0.071 136.1); /* #9ab98c */
+  --mgc-rose: oklch(0.667 0.075 20.3); /* #be8281 */
+  --mgc-slate: oklch(0.614 0.034 234.8); /* #718896 */
+  --mgc-sand: oklch(0.832 0.073 91.8); /* #d9c791 */
+  --mgc-olive: oklch(0.645 0.072 107.3); /* #92915d */
+  --mgc-brick: oklch(0.465 0.14 31.9); /* #983221 */
+
+  /* ── Типографика ───────────────────────────────────────────────────────── */
+  --font-sans-family: "IBM Plex Sans Variable", "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* ── Форма ─────────────────────────────────────────────────────────────── */
+  /* Тема в формате tweakcn (public/r/mgc.json): радиус, тени, трекинг, шаг отступов. */
+  --radius: 0.375rem; /* 6px — точнее и «инженернее», в духе угловатого логотипа; карточки = radius-xl (~8px) */
+  --spacing: 0.25rem;
+  --tracking-normal: -0.005em;
+
+  /* Тени — короткие и плотные, тонированы графитом бренда (#161616), а не чёрным.
+     Параметры tweakcn: color / opacity / blur / spread / offset; шкала 2xs…2xl собрана из них вручную. */
+  --shadow-color: oklch(0.2 0 0);
+  --shadow-opacity: 0.08;
+  --shadow-blur: 2px;
+  --shadow-spread: 0px;
+  --shadow-offset-x: 0px;
+  --shadow-offset-y: 1px;
+  --shadow-2xs: 0 1px 0 0 oklch(0.2 0 0 / 0.04);
+  --shadow-xs: 0 1px 1px 0 oklch(0.2 0 0 / 0.06);
+  --shadow-sm: 0 1px 2px 0 oklch(0.2 0 0 / 0.07), 0 1px 1px -1px oklch(0.2 0 0 / 0.06);
+  --shadow: 0 1px 2px 0 oklch(0.2 0 0 / 0.08), 0 2px 4px -2px oklch(0.2 0 0 / 0.06);
+  --shadow-md: 0 2px 4px -1px oklch(0.2 0 0 / 0.08), 0 6px 12px -6px oklch(0.2 0 0 / 0.1);
+  --shadow-lg: 0 4px 8px -2px oklch(0.2 0 0 / 0.08), 0 12px 24px -8px oklch(0.2 0 0 / 0.14);
+  --shadow-xl: 0 8px 16px -4px oklch(0.2 0 0 / 0.1), 0 24px 40px -12px oklch(0.2 0 0 / 0.2);
+  --shadow-2xl: 0 32px 64px -16px oklch(0.2 0 0 / 0.3);
+
+  /* ── Семантика: светлая тема ───────────────────────────────────────────── */
+  --background: oklch(0.97 0 0); /* фон приложения, #f5f5f4 */
+  --foreground: var(--mgc-black);
+  --card: var(--mgc-white);
+  --card-foreground: var(--mgc-black);
+  --popover: var(--mgc-white);
+  --popover-foreground: var(--mgc-black);
+
+  --primary: var(--mgc-black); /* основное действие — графит, не красный */
+  --primary-foreground: var(--mgc-white);
+  --secondary: oklch(0.949 0 0);
+  --secondary-foreground: var(--mgc-black);
+  --muted: oklch(0.949 0 0);
+  --muted-foreground: var(--mgc-gray-700); /* 6.8:1 на белом */
+  --accent: oklch(0.949 0 0);
+  --accent-foreground: var(--mgc-black);
+
+  --brand: var(--mgc-red); /* логотип, активная навигация, бренд-акценты */
+  --brand-foreground: var(--mgc-white); /* 4.6:1 */
+  --brand-soft: oklch(0.95 0.03 25); /* подложка аватара, бренд-бейджей */
+
+  --destructive: oklch(0.546 0.224 29.2); /* #d40000 — ошибки, остановка, удаление */
+  --destructive-foreground: var(--mgc-white);
+  --success: oklch(0.5 0.1 140);
+  --success-foreground: var(--mgc-white);
+  --success-soft: oklch(0.95 0.035 136);
+  --warning: oklch(0.52 0.105 66);
+  --warning-foreground: var(--mgc-white);
+  --warning-soft: oklch(0.95 0.045 85);
+  --info: oklch(0.5 0.1 262);
+  --info-foreground: var(--mgc-white);
+  --info-soft: oklch(0.95 0.025 262);
+  --destructive-soft: oklch(0.95 0.035 25);
+
+  --border: var(--mgc-gray-100);
+  --input: oklch(0.89 0 0);
+  --ring: var(--mgc-gray-500);
+
+  /* Графики: тона дополнительной палитры, насыщенность поднята до порога различимости.
+     Проверено dataviz/validate_palette (CVD, контраст, светлота) — см. docs/02-tokens.md */
+  --chart-1: oklch(0.480 0.121 261.9); /* #365ba1 сталь */
+  --chart-2: oklch(0.561 0.120 18.4); /* #b05459 роза */
+  --chart-3: oklch(0.639 0.120 100.1); /* #9d8d26 олива */
+  --chart-4: oklch(0.644 0.114 215.6); /* #009eb9 сланец */
+  --chart-5: oklch(0.600 0.120 62.4); /* #b26e27 охра */
+
+  /* Последовательная шкала (тепловые карты): один тон — сталь, светлое → тёмное */
+  --seq-1: oklch(0.95 0.02 262);
+  --seq-2: oklch(0.85 0.05 262);
+  --seq-3: oklch(0.72 0.09 262);
+  --seq-4: oklch(0.58 0.11 262);
+  --seq-5: oklch(0.44 0.11 262);
+
+  /* Тема «Графит»: боковое меню графитовое и в светлой теме (как чёрные слайды брендбука) */
+  --sidebar: oklch(0.2 0 0); /* #161616 */
+  --sidebar-foreground: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.27 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.6 0 0);
+}
+
+/* ── Семантика: тёмная тема ──────────────────────────────────────────────── */
+.dark {
+  /* Тени в тёмной теме: глубже по прозрачности + светлая кромка сверху читает высоту на тёмном */
+  --shadow-color: oklch(0 0 0);
+  --shadow-opacity: 0.4;
+  --shadow-2xs: 0 1px 0 0 oklch(0 0 0 / 0.3);
+  --shadow-xs: 0 1px 1px 0 oklch(0 0 0 / 0.35), inset 0 1px 0 0 oklch(1 0 0 / 0.04);
+  --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.4), inset 0 1px 0 0 oklch(1 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 oklch(0 0 0 / 0.45), inset 0 1px 0 0 oklch(1 0 0 / 0.05);
+  --shadow-md: 0 4px 10px -2px oklch(0 0 0 / 0.5), inset 0 1px 0 0 oklch(1 0 0 / 0.06);
+  --shadow-lg: 0 12px 24px -6px oklch(0 0 0 / 0.55), inset 0 1px 0 0 oklch(1 0 0 / 0.06);
+  --shadow-xl: 0 24px 40px -10px oklch(0 0 0 / 0.6), inset 0 1px 0 0 oklch(1 0 0 / 0.07);
+  --shadow-2xl: 0 32px 64px -16px oklch(0 0 0 / 0.7);
+
+  --background: oklch(0.165 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.215 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.245 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+
+  --primary: oklch(0.97 0 0);
+  --primary-foreground: var(--mgc-black);
+  --secondary: oklch(0.28 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.28 0 0);
+  --muted-foreground: oklch(0.74 0 0);
+  --accent: oklch(0.28 0 0);
+  --accent-foreground: oklch(0.97 0 0);
+
+  --brand: oklch(0.655 0.231 26.4); /* #ff3b3b — светлее для тёмного фона */
+  --brand-foreground: var(--mgc-black); /* тёмный текст на светлом красном #ff3b3b: 5.1:1 (белый — 3.5:1) */
+  --brand-soft: oklch(0.3 0.08 25);
+
+  --destructive: oklch(0.68 0.2 25);
+  --destructive-foreground: var(--mgc-black);
+  --success: oklch(0.76 0.11 140);
+  --success-foreground: var(--mgc-black);
+  --success-soft: oklch(0.3 0.05 140);
+  --warning: oklch(0.8 0.11 80);
+  --warning-foreground: var(--mgc-black);
+  --warning-soft: oklch(0.31 0.05 75);
+  --info: oklch(0.74 0.1 262);
+  --info-foreground: var(--mgc-black);
+  --info-soft: oklch(0.29 0.05 262);
+  --destructive-soft: oklch(0.27 0.07 25);
+
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.6 0 0);
+
+  --chart-1: oklch(0.581 0.120 261.8); /* #5279c1 сталь */
+  --chart-2: oklch(0.580 0.119 18.1); /* #b65a5f роза */
+  --chart-3: oklch(0.612 0.127 99.1); /* #978400 олива */
+  --chart-4: oklch(0.623 0.114 220.7); /* #0096b7 сланец */
+  --chart-5: oklch(0.580 0.136 59.9); /* #b36300 охра */
+
+  --seq-1: oklch(0.27 0.03 262);
+  --seq-2: oklch(0.36 0.06 262);
+  --seq-3: oklch(0.48 0.09 262);
+  --seq-4: oklch(0.6 0.11 262);
+  --seq-5: oklch(0.74 0.1 262);
+
+  /* «Графит» в тёмной теме: меню глубже фона страницы, чтобы отделялось */
+  --sidebar: oklch(0.13 0 0);
+  --sidebar-foreground: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.21 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0 0);
+  --sidebar-border: oklch(1 0 0 / 8%);
+  --sidebar-ring: oklch(0.6 0 0);
+}
+
+/* «Графит»: меню — тёмная зона (класс .dark) внутри светлой страницы.
+   В светлой теме оно фирменного графита #161616, в тёмной — глубже фона (см. .dark выше). */
+:root:not(.dark) .dark {
+  --sidebar: oklch(0.2 0 0);
+  --sidebar-accent: oklch(0.27 0 0);
+}
+
+/*
+ * Акценты модулей платформы «Производственный контур».
+ * Цвет каждого модуля — из его логотипа (promo/logos_pk.zip), он же из дополнительной палитры брендбука.
+ * Шкала строится в OKLCH с постоянным тоном (better-colors), контраст подобран светлотой:
+ *   --module-mark    точный цвет логотипа — ТОЛЬКО декоративные метки и тёмные поверхности (на светлом фоне часто < 3:1);
+ *   --module-strong  текст, иконки, активная полоса меню, индикаторы — ≥ 4.5:1 на фоне и на --module-soft;
+ *   --module-soft    подложка: выбранная строка, активный пункт, аватар;
+ *   --module-solid / --module-solid-foreground  заливка с текстом поверх (бейдж модуля) — ≥ 4.5:1.
+ * Модуль задаётся атрибутом data-module на <html> (или на любом контейнере). По умолчанию — платформа (красный).
+ * Спецификация: docs/02-tokens.md → «Акценты модулей».
+ */
+
+:root, [data-module="platform"] {
+  --module-mark: #ec0000;
+  --module-strong: oklch(0.560 0.230 29.2);
+  --module-soft: oklch(0.955 0.021 29.2);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+
+.dark, .dark [data-module="platform"], [data-module="platform"].dark, [data-module="platform"] .dark {
+  --module-strong: oklch(0.720 0.174 29.2);
+  --module-soft: oklch(0.290 0.120 29.2);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Простои и дефекты — #9ab98c */
+[data-module="andon"] {
+  --module-mark: #9ab98c;
+  --module-strong: oklch(0.530 0.086 136.1);
+  --module-soft: oklch(0.955 0.037 136.1);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="andon"], .dark [data-module="andon"], [data-module="andon"] .dark {
+  --module-strong: oklch(0.720 0.086 136.1);
+  --module-soft: oklch(0.290 0.046 136.1);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Техобслуживание — #5b77aa */
+[data-module="maintenance"] {
+  --module-mark: #5b77aa;
+  --module-strong: oklch(0.535 0.103 261.9);
+  --module-soft: oklch(0.955 0.020 261.9);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="maintenance"], .dark [data-module="maintenance"], [data-module="maintenance"] .dark {
+  --module-strong: oklch(0.720 0.103 261.9);
+  --module-soft: oklch(0.290 0.053 261.9);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Производственный отчёт — #92915d */
+[data-module="plantReport"] {
+  --module-mark: #92915d;
+  --module-strong: oklch(0.535 0.086 107.3);
+  --module-soft: oklch(0.955 0.037 107.3);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="plantReport"], .dark [data-module="plantReport"], [data-module="plantReport"] .dark {
+  --module-strong: oklch(0.720 0.086 107.3);
+  --module-soft: oklch(0.290 0.046 107.3);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Постоянные улучшения — #d9c791 */
+[data-module="qrci"] {
+  --module-mark: #d9c791;
+  --module-strong: oklch(0.535 0.088 91.8);
+  --module-soft: oklch(0.955 0.037 91.8);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="qrci"], .dark [data-module="qrci"], [data-module="qrci"] .dark {
+  --module-strong: oklch(0.720 0.088 91.8);
+  --module-soft: oklch(0.290 0.047 91.8);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Управление изменениями — #c19478 */
+[data-module="change"] {
+  --module-mark: #c19478;
+  --module-strong: oklch(0.540 0.081 53.2);
+  --module-soft: oklch(0.955 0.025 53.2);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="change"], .dark [data-module="change"], [data-module="change"] .dark {
+  --module-strong: oklch(0.720 0.081 53.2);
+  --module-soft: oklch(0.290 0.044 53.2);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Аудиты — #d5cabb */
+[data-module="audits"] {
+  --module-mark: #d5cabb;
+  --module-strong: oklch(0.535 0.060 75.8);
+  --module-soft: oklch(0.955 0.018 75.8);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="audits"], .dark [data-module="audits"], [data-module="audits"] .dark {
+  --module-strong: oklch(0.720 0.060 75.8);
+  --module-soft: oklch(0.290 0.022 75.8);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Оперативное планирование — #d9c791 */
+[data-module="planning"] {
+  --module-mark: #d9c791;
+  --module-strong: oklch(0.535 0.088 91.8);
+  --module-soft: oklch(0.955 0.037 91.8);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="planning"], .dark [data-module="planning"], [data-module="planning"] .dark {
+  --module-strong: oklch(0.720 0.088 91.8);
+  --module-soft: oklch(0.290 0.047 91.8);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Развитие проектов — #d9c791 */
+[data-module="projects"] {
+  --module-mark: #d9c791;
+  --module-strong: oklch(0.535 0.088 91.8);
+  --module-soft: oklch(0.955 0.037 91.8);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="projects"], .dark [data-module="projects"], [data-module="projects"] .dark {
+  --module-strong: oklch(0.720 0.088 91.8);
+  --module-soft: oklch(0.290 0.047 91.8);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Рекламации — #c19478 */
+[data-module="claims"] {
+  --module-mark: #c19478;
+  --module-strong: oklch(0.540 0.081 53.2);
+  --module-soft: oklch(0.955 0.025 53.2);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="claims"], .dark [data-module="claims"], [data-module="claims"] .dark {
+  --module-strong: oklch(0.720 0.081 53.2);
+  --module-soft: oklch(0.290 0.044 53.2);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Запрос на квотацию — #c19478 */
+[data-module="quotation"] {
+  --module-mark: #c19478;
+  --module-strong: oklch(0.540 0.081 53.2);
+  --module-soft: oklch(0.955 0.025 53.2);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="quotation"], .dark [data-module="quotation"], [data-module="quotation"] .dark {
+  --module-strong: oklch(0.720 0.081 53.2);
+  --module-soft: oklch(0.290 0.044 53.2);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Управление документацией — #b3814c */
+[data-module="docs"] {
+  --module-mark: #b3814c;
+  --module-strong: oklch(0.540 0.112 66.4);
+  --module-soft: oklch(0.955 0.029 66.4);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="docs"], .dark [data-module="docs"], [data-module="docs"] .dark {
+  --module-strong: oklch(0.720 0.112 66.4);
+  --module-soft: oklch(0.290 0.057 66.4);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Управление чертежами — #7c6e6c */
+[data-module="drawings"] {
+  --module-mark: #7c6e6c;
+  --module-strong: oklch(0.535 0.020 27.4);
+  --module-soft: oklch(0.955 0.015 27.4);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="drawings"], .dark [data-module="drawings"], [data-module="drawings"] .dark {
+  --module-strong: oklch(0.720 0.020 27.4);
+  --module-soft: oklch(0.290 0.019 27.4);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Информационные доски — #aa9a9a */
+[data-module="infoboards"] {
+  --module-mark: #aa9a9a;
+  --module-strong: oklch(0.535 0.021 17.6);
+  --module-soft: oklch(0.955 0.016 17.6);
+  --module-solid: var(--module-strong);
+  --module-solid-foreground: oklch(1 0 0);
+}
+.dark[data-module="infoboards"], .dark [data-module="infoboards"], [data-module="infoboards"] .dark {
+  --module-strong: oklch(0.720 0.021 17.6);
+  --module-soft: oklch(0.290 0.019 17.6);
+  --module-solid-foreground: oklch(0.2 0 0);
+}
+
+/* Производные: меню и выделения берут акцент текущего модуля */
+[data-module], :root, .dark {
+  --sidebar-primary: var(--module-strong);
+  --sidebar-primary-foreground: var(--module-solid-foreground);
+}
