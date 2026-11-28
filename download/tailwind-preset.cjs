@@ -1,4 +1,4 @@
-/* @mgc/ui 0.5.0 — пресет Tailwind v3. Сгенерировано scripts/build-package.mjs. */
+/* @mgc/ui 0.6.0 — пресет Tailwind v3. Сгенерировано scripts/build-package.mjs. */
 
 /**
  * tailwind.config.js:  module.exports = { presets: [require("@mgc/ui/tailwind-preset")], content: [...] }

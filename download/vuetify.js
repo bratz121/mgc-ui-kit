@@ -1,4 +1,4 @@
-/* @mgc/ui 0.5.0 — темы Vuetify. Сгенерировано scripts/build-package.mjs. */
+/* @mgc/ui 0.6.0 — темы Vuetify. Сгенерировано scripts/build-package.mjs. */
 
 /**
  * Vuetify 3:
